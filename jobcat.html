@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloggings</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      background-color: #fff;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    nav .logo a {
+      color: #333;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav .menu ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav .menu li a {
+      display: block;
+      color: #333;
+      font-size: 16px;
+      text-decoration: none;
+      padding: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav .menu li a:hover {
+      background-color: #070707;
+      color: #fcfbfb;
+    }
+
+    nav .search {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .search input[type="text"] {
+      border: none;
+      border-radius: 4px;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    nav .search button[type="submit"] {
+      border: none;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    nav .search button[type="submit"]:hover {
+      background-color: #555;
+    }
+
+    @media only screen and (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+      nav .logo {
+        margin-bottom: 10px;
+      }
+      nav .menu {
+        margin-bottom: 10px;
+      }
+      nav .search {
+        margin-top: 10px;
+      }
+      nav .search input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+    .logo img {
+      width: 33rem;
+      height: 3rem;
+      padding: 0.2rem;
+    }
+
+    .job-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      width: 1000px;
+    }
+
+    .job-card h2 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+      padding: 2rem;
+    }
+
+    .job-card p {
+      margin: 5px 0;
+    }
+
+    .job-card .company {
+      font-weight: bold;
+    }
+
+    .job-card .location {
+      color: #666;
+    }
+
+    .job-card .salary {
+      color: green;
+    }
+
+    .job-card .description,
+    .job-card .requirements {
+      font-size: 0.9em;
+    }
+
+    .job-card .apply-button {
+      background-color: green;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    section {
+      margin-top: 7rem;
+    }
+
+    .job-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      max-width: 1000px;
+    }
+
+    .job-card h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .job-card p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .job-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .job-card li {
+      margin-bottom: 10px;
+    }
+
+    .apply-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .apply-button:hover {
+      background-color: #0062cc;
+    }
+
+    .categories {
+      font-size: 3rem;
+      text-align: center;
+      color: #fcfbfb;
+    }
+
+    .cat {
+      box-shadow: 1px 1px 1px 1px rgb(151, 151, 151);
+      background-color: #000000;
+      padding: 2rem;
+    }
+
+    .job-card {
+      background-color: white;
+      padding: 2rem;
+    }
+
+    /* Style the services section */
+    .services {
+      background-color: #f2f2f2;
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+
+    /* Style the services heading */
+    .services h2 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* Style the services list */
+    .services-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Style the service items */
+    .service {
+      width: 300px;
+      margin: 30px;
+      padding: 30px;
+      background-color: #fff;
+      text-align: center;
+      box-shadow: 0px 0px 10px #ddd;
+    }
+
+    /* Style the service icons */
+    .service img {
+      width: 100%;
+      height: 12rem;
+      margin-bottom: 20px;
+    }
+
+    .service a {
+      text-decoration: none;
+      color: #000;
+      font-size: 1.5rem;
+    }
+
+    .service img:hover {
+      height: 15rem;
+    }
+
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: rgb(43, 42, 42);
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 29px;
+    }
+
+    #myBtn:hover {
+      background-color: #555;
+    }
+  </style>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="#">Jobster</a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="jobster.html">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="">Services</a></li>
+          <li><a href="loginpage.html">Login</a></li>
+          <li><a href="Blogpage.html">Blog</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="text" placeholder="Search..." />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </div>
+    </nav>
+
+    <section class="services" id="service">
+      <h2>Categories</h2>
+      <div class="services-list">
+        <div class="service">
+          <img src="images/itandtech.jpg" alt="Service 1" />
+          <a href="#itandtech"><h3>IT and Technology</h3> </a>
+        </div>
+        <div class="service">
+          <img src="images/data.jpg" alt="Service 2" />
+          <a href="#data"><h3>Data Scientist</h3> </a>
+        </div>
+        <div class="service">
+          <img src="images/marketing.jpg" alt="Service 3" />
+          <a href="#market"><h3>Marketing</h3> </a>
+        </div>
+      </div>
+
+      <div class="services-list">
+        <div class="service">
+          <img src="images/jobsearch.jpg" alt="Service 1" />
+          <a href="#Accountant"><h3>Accountant</h3> </a>
+        </div>
+        <div class="service">
+          <img src="images/rsume.jpg" alt="Service 2" />
+          <a href="#creative"><h3>Creative Writing</h3> </a>
+        </div>
+        <div class="service">
+          <img src="images/advice.jpg" alt="Service 3" />
+          <a href="#teaching"><h3>Teaching</h3> </a>
+        </div>
+      </div>
+
+      <div class="services-list">
+        <div class="service">
+          <img src="images/desi.jpg" alt="Service 1" />
+          <a href="#designer"><h3>Designer</h3> </a>
+        </div>
+        <div class="service">
+          <img src="images/trainer.jpg" alt="Service 2" />
+          <a href="#trainer"><h3>Trainer</h3> </a>
+        </div>
+        <div class="service">
+          <img src="images/HR.jpg" alt="Service 3" />
+          <a href="#hr"><h3>HR & Management</h3> </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="itandtech">IT and Technology</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Front-end Developer</h2>
+            <p class="company">Company Name: TechnicalGrowth</p>
+            <p class="location">Location: Delhi NCR</p>
+            <p class="salary">Salary: 10,000/Month</p>
+            <p class="description">
+              Job Description: Need a Candidate who can code html css and
+              javascript
+            </p>
+            <p class="requirements">
+              Requirements: Complete Knowledge of HTML, CSS and javascript
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction()"
+              >Apply Now</a
+            >
+            <div id="myDIV" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction() {
+                var x = document.getElementById("myDIV");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Backend Developer</h2>
+            <p class="company">Company Name: HighRate</p>
+            <p class="location">Location: Mumbai</p>
+            <p class="salary">Salary: 15,000/month + incentives</p>
+            <p class="description">
+              Job Description: This post requires a candidate who can perform
+              the multitask at a time.
+            </p>
+            <p class="requirements">
+              Requirements: Complete Knowledge of Backend tools
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction1()"
+              >Apply Now</a
+            >
+            <div id="myDIV1" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction1() {
+                var x = document.getElementById("myDIV1");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Fullstack Developer</h2>
+            <p class="company">Company Name: Spacecode</p>
+            <p class="location">Location: Pune</p>
+            <p class="salary">Salary: 25,000/month</p>
+            <p class="description">Job Description: Frontend+Backend</p>
+            <p class="requirements">Requirements: Frontend+Backend</p>
+            <a href="#" class="apply-button" onclick="myFunction2()"
+              >Apply Now</a
+            >
+            <div id="myDIV2" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction2() {
+                var x = document.getElementById("myDIV2");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="teaching">Teaching</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Subject Matter Expert</h2>
+            <p class="company">Company Name: FullScore</p>
+            <p class="location">Location: Work From Home</p>
+            <p class="salary">Salary: 10,000/month</p>
+            <p class="description">
+              Job Description: Need to complete 10 questions per day
+            </p>
+            <p class="requirements">
+              Requirements: Proper Knowledge of mathematics, Laptop with proper
+              network connection and typying speed
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction3()"
+              >Apply Now</a
+            >
+            <div id="myDIV3" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction3() {
+                var x = document.getElementById("myDIV3");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Chemistry Online Teacher</h2>
+            <p class="company">Foundation Era</p>
+            <p class="location">Location: Bahadurgarh</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">
+              Job Description: A teacher who can teach Chemistry and make test
+              papers
+            </p>
+            <p class="requirements">Requirements: BSc Chemistry</p>
+            <a href="#" class="apply-button" onclick="myFunction4()"
+              >Apply Now</a
+            >
+            <div id="myDIV4" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction4() {
+                var x = document.getElementById("myDIV4");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Online Teacher</h2>
+            <p class="company">TeachWithUs</p>
+            <p class="location">Location: Work from home</p>
+            <p class="salary">Salary: 5000/month</p>
+            <p class="description">Job Description: online teacher</p>
+            <p class="requirements">Requirements: Bsc. mathematics</p>
+            <a href="#" class="apply-button" onclick="myFunction5()"
+              >Apply Now</a
+            >
+            <div id="myDIV5" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction5() {
+                var x = document.getElementById("myDIV5");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="trainer">Trainer</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Yoga Trainer</h2>
+            <p class="company">TrainToFit</p>
+            <p class="location">Location: Delhi NCR</p>
+            <p class="salary">Salary: 20,000/Month</p>
+            <p class="description">
+              Job Description: Daily Yoga Trainer to teach Yoga to atleast 20
+              persons in a class
+            </p>
+            <p class="requirements">
+              Requirements: Complete knowledge of Yoga and its Benefits
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction6()"
+              >Apply Now</a
+            >
+            <div id="myDIV6" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction6() {
+                var x = document.getElementById("myDIV6");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Gym Trainer</h2>
+            <p class="company">Fitness Freak</p>
+            <p class="location">Location: Gurgaon</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">Job Description: Gym mentor</p>
+            <p class="requirements">
+              Requirements: Complete Knowledge of Gym and its Machines
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction7()"
+              >Apply Now</a
+            >
+            <div id="myDIV7" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction7() {
+                var x = document.getElementById("myDIV7");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li></li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="designer">Designer</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Designer</h2>
+            <p class="company">DiscDesign</p>
+            <p class="location">Location: Kolkata</p>
+            <p class="salary">Salary: 10,000/month</p>
+            <p class="description">
+              Job Description: On destination Designer for designing the outfits
+              for girls
+            </p>
+            <p class="requirements">Requirements: Course in Designing</p>
+            <a href="#" class="apply-button" onclick="myFunction8()"
+              >Apply Now</a
+            >
+            <div id="myDIV8" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction8() {
+                var x = document.getElementById("myDIV8");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Designer</h2>
+            <p class="company">Design Me</p>
+            <p class="location">Location: Agra</p>
+            <p class="salary">Salary: 40,000/month</p>
+            <p class="description">
+              Job Description: On destination Designer for designing the outfits
+              for girls and boys
+            </p>
+            <p class="requirements">Requirements: Course in Designing</p>
+            <a href="#" class="apply-button" onclick="myFunction9()"
+              >Apply Now</a
+            >
+            <div id="myDIV9" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction9() {
+                var x = document.getElementById("myDIV9");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Designer</h2>
+            <p class="company">LoveDesign</p>
+            <p class="location">Location: Pune</p>
+            <p class="salary">Salary: 25,000/month</p>
+            <p class="description">
+              Job Description: On destination Designer for designing the outfits
+            </p>
+            <p class="requirements">Requirements: Course in Designing</p>
+            <a href="#" class="apply-button" onclick="myFunction11()"
+              >Apply Now</a
+            >
+            <div id="myDIV11" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction11() {
+                var x = document.getElementById("myDIV11");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Designer</h2>
+            <p class="company">Deal With Des</p>
+            <p class="location">Location: Jaipur</p>
+            <p class="salary">Salary: 10,000/month</p>
+            <p class="description">
+              Job Description: On destination Designer for designing the outfits
+              for girls
+            </p>
+            <p class="requirements">Requirements: Course in Designing</p>
+            <a href="#" class="apply-button" onclick="myFunction22()"
+              >Apply Now</a
+            >
+            <div id="myDIV22" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction22() {
+                var x = document.getElementById("myDIV22");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="Accountant">Accountant</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Accountant</h2>
+            <p class="company">MissionEco</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">
+              Job Description: Manages all kind of expenditures
+            </p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction33()"
+              >Apply Now</a
+            >
+            <div id="myDIV33" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction33() {
+                var x = document.getElementById("myDIV33");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Accountant</h2>
+            <p class="company">Raising</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 45,000/month</p>
+            <p class="description">
+              Job Description: Manages all kind of expenditures
+            </p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction44()"
+              >Apply Now</a
+            >
+            <div id="myDIV44" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunctio44n() {
+                var x = document.getElementById("myDIV44");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Accountant</h2>
+            <p class="company">MoneyThing</p>
+            <p class="location">Location: Pune</p>
+            <p class="salary">Salary: 50,000/month</p>
+            <p class="description">
+              Job Description: Manages all kind of expenditures
+            </p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction55()"
+              >Apply Now</a
+            >
+            <div id="myDIV55" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction55() {
+                var x = document.getElementById("myDIV55");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Accountant</h2>
+            <p class="company">dealwithit</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">
+              Job Description: Manages all kind of expenditures
+            </p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction66()"
+              >Apply Now</a
+            >
+            <div id="myDIV66" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction66() {
+                var x = document.getElementById("myDIV66");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="hr">HR & Management</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>HR</h2>
+            <p class="company">Company Name: Raising</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 50,000/month</p>
+            <p class="description">Job Description: Human Resource Manager</p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction111()"
+              >Apply Now</a
+            >
+            <div id="myDIV111" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction111() {
+                var x = document.getElementById("myDIV111");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>HR</h2>
+            <p class="company">Company Name: Moneyplanned</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 58,000/month</p>
+            <p class="description">Job Description: Human Resource Manager</p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction1111()"
+              >Apply Now</a
+            >
+            <div id="myDIV1111" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction1111() {
+                var x = document.getElementById("myDIV1111");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>HR</h2>
+            <p class="company">Company Name: Raisetoit</p>
+            <p class="location">Location: Haridwar</p>
+            <p class="salary">Salary: 45,000/month</p>
+            <p class="description">Job Description: Human Resource Manager</p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction222()"
+              >Apply Now</a
+            >
+            <div id="myDIV222" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction222() {
+                var x = document.getElementById("myDIV222");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>HR</h2>
+            <p class="company">Company Name: BeItOrNot</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 50,000/month</p>
+            <p class="description">Job Description: Human Resource Manager</p>
+            <p class="requirements">Requirements: Bcom, Mcom, MBA</p>
+            <a href="#" class="apply-button" onclick="myFunction12()"
+              >Apply Now</a
+            >
+            <div id="myDIV12" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction12() {
+                var x = document.getElementById("myDIV12");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="creative">Creative Writing</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Blogger</h2>
+            <p class="company">Note it Down</p>
+            <p class="location">Location: Work From Home</p>
+            <p class="salary">Salary:10,000/month</p>
+            <p class="description">
+              Job Description: Daily 2 contents with 1000 words each
+            </p>
+            <p class="requirements">
+              Requirements: laptop with proper network connection and fast
+              typing speed
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction21()"
+              >Apply Now</a
+            >
+            <div id="myDIV21" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction21() {
+                var x = document.getElementById("myDIV21");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Blogger</h2>
+            <p class="company">Raising</p>
+            <p class="location">Location: Work From Home</p>
+            <p class="salary">Salary:10,000/month</p>
+            <p class="description">
+              Job Description: Daily 2 contents with 1000 words each
+            </p>
+            <p class="requirements">
+              Requirements: laptop with proper network connection and fast
+              typing speed
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction221()"
+              >Apply Now</a
+            >
+            <div id="myDIV221" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction221() {
+                var x = document.getElementById("myDIV221");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Content Writer</h2>
+            <p class="company">FullScore</p>
+            <p class="location">Location: Work From Home</p>
+            <p class="salary">Salary:15,000/month</p>
+            <p class="description">
+              Job Description: Daily 2 contents with 1000 words each
+            </p>
+            <p class="requirements">
+              Requirements: laptop with proper network connection and fast
+              typing speed
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction112()"
+              >Apply Now</a
+            >
+            <div id="myDIV112" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction112() {
+                var x = document.getElementById("myDIV112");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Blogger</h2>
+            <p class="company">Readerscook</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary:20,000/month</p>
+            <p class="description">
+              Job Description: Daily 2 contents with 1000 words each
+            </p>
+            <p class="requirements">
+              Requirements: laptop with proper network connection and fast
+              typing speed
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction123()"
+              >Apply Now</a
+            >
+            <div id="myDIV123" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction123() {
+                var x = document.getElementById("myDIV123");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="data">Data Scientist</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Data Colletctor</h2>
+            <p class="company">Popularising</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">
+              Job Description: Collecting the data from door to door
+            </p>
+            <p class="requirements">Requirements: course in statistics</p>
+            <a href="#" class="apply-button" onclick="myFunction666()"
+              >Apply Now</a
+            >
+            <div id="myDIV666" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction666() {
+                var x = document.getElementById("myDIV666");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Data analyzer</h2>
+            <p class="company">Popularising</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">Job Description: analysis the data</p>
+            <p class="requirements">Requirements: course in statistics</p>
+            <a href="#" class="apply-button" onclick="myFunction555()"
+              >Apply Now</a
+            >
+            <div id="myDIV555" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction555() {
+                var x = document.getElementById("myDIV555");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Data entry</h2>
+            <p class="company">Popularising</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary: 30,000/month</p>
+            <p class="description">
+              Job Description: enter the data in the excel file
+            </p>
+            <p class="requirements">
+              Requirements: course in statistics and knowledge of ms excel
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction888()"
+              >Apply Now</a
+            >
+            <div id="myDIV888" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction888() {
+                var x = document.getElementById("myDIV888");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cat">
+      <h2 class="categories" id="market">Marketing</h2>
+      <ul>
+        <li>
+          <div class="job-card">
+            <h2>Sales Man</h2>
+            <p class="company">Meet</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary:40,000/month</p>
+            <p class="description">
+              Job Description: Selling the products door to door
+            </p>
+            <p class="requirements">Requirements: Good Communication</p>
+            <a href="#" class="apply-button" onclick="myFunction8888()"
+              >Apply Now</a
+            >
+            <div id="myDIV8888" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction8888() {
+                var x = document.getElementById("myDIV8888");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Sales Man</h2>
+            <p class="company">Makeworthit</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary:40,000/month</p>
+            <p class="description">
+              Job Description: Selling the products door to door
+            </p>
+            <p class="requirements">Requirements: Good Communication</p>
+            <a href="#" class="apply-button" onclick="myFunction345()"
+              >Apply Now</a
+            >
+            <div id="myDIV345" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction345() {
+                var x = document.getElementById("myDIV345");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Social Media Marketing</h2>
+            <p class="company">kitaro</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary:40,000/month</p>
+            <p class="description">
+              Job Description: Selling the products online
+            </p>
+            <p class="requirements">
+              Requirements: Good Communication and knowledgeof technical tools
+            </p>
+            <a href="#" class="apply-button" onclick="myFunction234()"
+              >Apply Now</a
+            >
+            <div id="myDIV234" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction234() {
+                var x = document.getElementById("myDIV234");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+        <li>
+          <div class="job-card">
+            <h2>Sales Man</h2>
+            <p class="company">Endles</p>
+            <p class="location">Location: Delhi</p>
+            <p class="salary">Salary:40,000/month</p>
+            <p class="description">
+              Job Description: Selling the products door to door
+            </p>
+            <p class="requirements">Requirements: Good Communication</p>
+            <a href="#" class="apply-button" onclick="myFunction13()"
+              >Apply Now</a
+            >
+            <div id="myDIV13" style="display: none">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link"
+              >
+                https://docs.google.com/forms/d/e/1FAIpQLSdtJY5--4Iu8157xWe2JjZiM3ZR2H9vxPSSqkUE3D7n9a4rzw/viewform?usp=sf_link
+              </a>
+            </div>
+            <script>
+              function myFunction13() {
+                var x = document.getElementById("myDIV13");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+    <div style="background-color: black; color: white; padding: 30px">
+      Scroll Down
+    </div>
+    <div style="background-color: lightgrey; padding: 30px 30px 2500px">
+      This example demonstrates how to create a "scroll to top" button that
+      becomes visible <strong>when the user starts to scroll the page</strong>.
+    </div>
+
+    <script>
+      // Get the button
+      let mybutton = document.getElementById("myBtn");
+
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+  </body>
+</html>

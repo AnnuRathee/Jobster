@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+     .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card p {
+  padding: 10px;
+}
+
+/* Style the services section */
+.services {
+  background-color: #f2f2f2;
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+/* Style the services heading */
+.services h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Style the services list */
+.services-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Style the service items */
+.service {
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0px 0px 10px #ddd;
+}
+
+/* Style the service icons */
+.service img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+/* Style the service headings */
+.service h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style the service descriptions */
+.service p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.job-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 1000px;
+  
+}
+
+.job-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  padding: 2rem;
+}
+
+.job-card p {
+  margin: 5px 0;
+}
+
+.job-card .company {
+  font-weight: bold;
+}
+
+.job-card .location {
+  color: #666;
+}
+
+.job-card .salary {
+  color: green;
+}
+
+.job-card .description,
+.job-card .requirements {
+  font-size: 0.9em;
+}
+
+.job-card .apply-button {
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+nav {
+  background-color: #ccc;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav a {
+  color: black;
+}
+
+.job-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.job-card h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.job-card p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.job-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.job-card li {
+  margin-bottom: 10px;
+}
+
+.apply-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+  background-color: #0062cc;
+}
+
+
+.swipe-up {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 3px solid #fff;
+  border-top: 3px solid #fff;
+  transform: rotate(45deg);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+#myBtn:hover {
+  background-color: #555;
+}
+#content {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+
+</style>
+
+<script>
+    function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+const swipeUpButton = document.querySelector('.swipe-up');
+
+swipeUpButton.addEventListener('click', () => {
+  console.log('Swiped up!');
+});
+</script>
+<body>
+   
+  <button onclick="myFunction()">Click Me</button>
+
+
+
+
+<div class="job-card">
+  <h2>Job Title</h2>
+  <p class="company">Company Name</p>
+  <p class="location">Location</p>
+  <p class="salary">Salary</p>
+  <p class="description">Job Description</p>
+  <p class="requirements">Requirements</p>
+  <a href="#" class="apply-button" onclick="myFunction()">Apply Now</a>
+  <div id="myDIV" style="display: none;">
+    earch and apply for job vacancies in various industries and locationss
+</div>
+  <script>
+    function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</div>
+
+
+
+<nav>
+  <ul>
+    <li><a href="#">Category 1</a></li>
+    <li><a href="#">Category 2</a></li>
+    <li><a href="#">Category 3</a></li>
+    <li><a href="#">Category 4</a></li>
+    <li><a href="#">Category 5</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Category 1</h2>
+  <ul>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+   </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h2>Category 1</h2>
+  <ul>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+   </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    
+  </ul>
+</section>
+
+
+
+<section>
+  <h2>Category 1</h2>
+  <ul>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+   </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h2>Category 1</h2>
+  <ul>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+   </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button">Apply Now</a>
+      </div>
+    </li>
+    <li>
+      <div class="job-card">
+        <h2>Job Title</h2>
+        <p class="company">Company Name</p>
+        <p class="location">Location</p>
+        <p class="salary">Salary</p>
+        <p class="description">Job Description</p>
+        <p class="requirements">Requirements</p>
+        <a href="#" class="apply-button" id="toggle-btn">Apply Now</a>
+        <div id="content" style="display: none;">
+          <p>This is some hidden content.</p>
+        </script>
+
+
+        <button id="toggle-btn">Toggle Content</button>
+        <div id="content" style="display: none;">
+          <p>This is some hidden content.</p>
+        </div>
+        
+        <script>
+          const toggleBtn = document.getElementById("toggle-btn");
+        const content = document.getElementById("content");
+        
+        toggleBtn.addEventListener("click", function() {
+          if (content.style.display === "none") {
+            content.style.display = "block";
+          } else {
+            content.style.display = "none";
+          }
+        });
+        
+        </script>
+        </div>
+      </div>
+    </li>
+    
+  </ul>
+</section>
+
+<div class="swipe-up">
+  <span class="arrow"></span>
+</div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div style="background-color:black;color:white;padding:30px">Scroll Down</div>
+<div style="background-color:lightgrey;padding:30px 30px 2500px">This example demonstrates how to create a "scroll to top" button that becomes visible 
+  <strong>when the user starts to scroll the page</strong>.</div>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>

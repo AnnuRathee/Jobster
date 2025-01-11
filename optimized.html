@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <style>
+    /* Reset and General Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navigation Styles */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      background-color: #fff;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    nav .logo img {
+      width: 33rem;
+      height: 3rem;
+      padding: 0.2rem;
+    }
+
+    nav .logo a {
+      color: #333;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav .menu ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav .menu li a {
+      display: block;
+      color: #333;
+      font-size: 16px;
+      text-decoration: none;
+      padding: 15px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav .menu li a:hover {
+      background-color: #070707;
+      color: #fcfbfb;
+    }
+
+    nav .search {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .search input[type="text"] {
+      border: none;
+      border-radius: 4px;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    nav .search button[type="submit"] {
+      border: none;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    nav .search button[type="submit"]:hover {
+      background-color: #555;
+    }
+
+    /* Responsive Navigation */
+    @media only screen and (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      nav .logo {
+        margin-bottom: 10px;
+      }
+
+      nav .menu {
+        margin-bottom: 10px;
+      }
+
+      nav .search {
+        margin-top: 10px;
+      }
+
+      nav .search input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+
+    /* Main Section Styles */
+    .mainpart {
+      display: flex;
+      align-items: center;
+      margin: 5rem 6rem;
+      padding-top: 3rem;
+    }
+
+    .mainpart img.main {
+      width: 40rem;
+      height: 35rem;
+    }
+
+    .list1,
+    .list4 {
+      background-color: rgb(12, 12, 12);
+      font-size: 1.5rem;
+      padding: 2px 6px;
+      color: white;
+      box-shadow: 1px 1px 1px 1px rgba(150, 150, 150, 0.801);
+      margin-right: 10em;
+    }
+
+    .list2 {
+      font-size: 5rem;
+    }
+
+    .list3 {
+      font-size: 1.2rem;
+    }
+
+    .list4 {
+      background-color: rgb(15, 15, 15);
+      font-size: 1.5rem;
+      margin-right: 2rem;
+      padding: 2px 5px;
+      box-shadow: 1px 1px 1px 1px rgba(150, 150, 150, 0.801);
+      color: white;
+    }
+
+    .list4 a {
+      color: white;
+    }
+
+    /* Responsive Main Section */
+    @media only screen and (max-width: 768px) {
+      .mainpart {
+        flex-direction: column;
+        align-items: center;
+        margin: 3rem 1rem;
+        padding: 1rem;
+      }
+
+      .mainpart img.main {
+        width: 100%;
+        height: auto;
+      }
+
+      .list1,
+      .list4 {
+        margin-right: 0;
+      }
+
+      .list4 {
+        margin-right: 0.5rem;
+      }
+    }
+
+    /* About Section Styles */
+    .about-section {
+      padding: 50px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+
+    /* Card Styles */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 1rem 7rem;
+    }
+
+    .card {
+      width: 275px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      padding: 0;
+      box-shadow: 1px 1px rgb(187, 186, 186);
+    }
+
+    .card img {
+      width: 100%;
+      height: 15rem;
+      object-fit: cover;
+    }
+
+    .card img:hover {
+      width: 20rem;
+      height: 20rem;
+    }
+
+    .card h4 {
+      font-size: 1.4rem;
+      padding: 0 5rem;
+    }
+
+    /* Services Section Styles */
+    .services {
+      background-color: #f2f2f2;
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+
+    .services h2 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .services-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .service {
+      width: 300px;
+      margin: 30px;
+      padding: 30px;
+      background-color: #fff;
+      text-align: center;
+      box-shadow: 0px 0px 10px #ddd;
+    }
+
+    .service img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .service h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .service p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Contact Section Styles */
+    .contact-section {
+      background-color: #f1eeee;
+      padding: 50px;
+      text-align: center;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="images/logo.jpg" alt="Logo" />
+        <a href="#">Jobster</a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="jobster.html">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#service">Services</a></li>
+          <li><a href="loginpage.html">Login</a></li>
+          <li><a href="Blogpage.html">Blog</a></li>
+          <li><a href="#contactus">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="text" placeholder="Search..." />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </div>
+    </nav>
+
+    <div class="mainpart">
+      <img src="images/jobster.jpg" alt="Jobster" class="main" />
+      <ul>
+        <li class="list1">Guaranteed Job</li>
+        <li class="list2">Create an Opportunity</li>
+        <li class="list3">
+          This website helps you create opportunities for all the youth to apply
+          for their desired jobs. We support you in finding the perfect job of
+          your interest.
+        </li>
+        <a href="jobcat.html" class="list4">Explore Jobs</a>
+      </ul>
+    </div>
+
+    <section class="services" id="service">
+      <h2>Our Services</h2>
+      <div class="services-list">
+        <div class="service">
+          <img src="images/jobsearch.jpg" alt="Service 1" />
+          <h3>Job Search</h3>
+          <p>
+            Search and apply for job vacancies in various industries and
+            locations.
+          </p>
+        </div>
+        <div class="service">
+          <img src="images/resume.jpg" alt="Service 2" />
+          <h3>Resume Writing</h3>
+          <p>
+            Create professional and impressive resumes to stand out from other
+            candidates.
+          </p>
+        </div>
+        <div class="service">
+          <img src="images/advice.jpg" alt="Service 3" />
+          <h3>Career Advice</h3>
+          <p>
+            Get expert advice on career planning, interview preparation, and job
+            market trends.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="about-section" id="about">
+      <h1>About Us Page</h1>
+      <p>
+        Welcome to our job website, where we connect job seekers with the best
+        opportunities and employers with the best talent. Our mission is to make
+        the job search process as easy and efficient as possible, so that
+        everyone can find their dream job.
+      </p>
+      <p>
+        We offer a user-friendly platform that provides job seekers with a
+        comprehensive list of job openings, while allowing employers to post job
+        listings and find the right candidates. At our job website, we are
+        committed to providing the best service possible to both job seekers and
+        employers. Join us and let us help you find the job or talent you are
+        looking for!
+      </p>
+    </div>
+
+    <div class="card-container">
+      <!-- Cards go here -->
+    </div>
+
+    <section class="contact-section" id="contactus">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form>
+          <!-- Form inputs go here -->
+          <button type="submit">Submit</button>
+        </form>
+        <div class="contact-info">
+          <p>Feel free to contact us for any queries or feedback!</p>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> Shree Shanta Stanam</li>
+            <li><i class="fas fa-phone"></i>+91 8307290509</li>
+            <li><i class="fas fa-envelope"></i> annurathee152@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
